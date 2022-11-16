@@ -1,28 +1,32 @@
-import React from "react"
 import { createRoot } from "react-dom/client"
-
 import "./index.css"
 
 const root = createRoot(document.getElementById("root"))
-const fName = "Glaucielle"
-const lName = "Sa"
-/* const date = new Date()
-let day = date.getDate()
-let month = date.getMonth() + 1
-let year = date.getFullYear() 
-ou
-let currentDate = new Date().toJSON().slice(0, 10)
-*/
-let currentDate = new Date().toLocaleDateString()
+
+const style = {
+  color: "orange",
+  fontSize: "36px",
+}
+
+const greetings = () => {
+  const currentTime = new Date().getHours()
+
+  if (currentTime < 12 || currentTime == 24) {
+    style.color = "red"
+    return "Good Morning"
+  } else if (currentTime > 12 && currentTime < 18) {
+    style.color = "green"
+    return "Good afternoon"
+  } else {
+    style.color = "blue"
+    return "Good evening"
+  }
+}
 
 root.render(
   <div>
-    <h1 className="name">
-      Hello, {fName} {lName}.
+    <h1 style={style} className="name">
+      {greetings()}
     </h1>
-    <p>
-      {/* Today is {day}-{month}-{year} */}
-      Today is {currentDate}
-    </p>
   </div>,
 )
